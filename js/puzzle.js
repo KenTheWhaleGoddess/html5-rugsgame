@@ -1,4 +1,4 @@
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: null });
+var game = new Phaser.Game(400, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: null });
 
 var PIECE_WIDTH = 200,
     PIECE_HEIGHT = 200,
@@ -17,12 +17,11 @@ Moralis.serverURL = 'https://e1qealego843.moralisweb3.com:2053/server';
 const RUGS_NAME = '8bit-rugs';
 
 async function preload() {
-    window.web3 = await Moralis.Web3.enable();
-
 }
 
 async function login() {
     try {
+        window.web3 = await Moralis.Web3.enable();
         await ethereum.enable();
         user = await Moralis.Web3.authenticate();
         console.log(user);
