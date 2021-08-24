@@ -29,9 +29,9 @@ async function login() {
         const userAddress = userinfo.get("ethAddress");
         const openseaRugs = await fetch('https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=50&collection=8bit-rugs&owner=' + userAddress);
         const rugs = await openseaRugs.json();
-        console.log(rugs[0]);
+        console.log(rugs);
         hideLogin();
-        prepareBoard(rugs[0]);
+        prepareBoard(rugs);
     } catch (error) {
         console.log(error);
     }
@@ -41,10 +41,12 @@ async function hideLogin() {
 	$('#login_button').hide();
 }
 
-function prepareBoard(rug) {
-    console.log(rug);
+async function prepareBoard(rugs) {
+    console.log(rugs);
+    const url = await rugs[0].image_url;
+    console.log(url);
 
-    game.load.spritesheet("background", rug.image_url, PIECE_WIDTH, PIECE_HEIGHT);
+    game.load.spritesheet("background", url, PIECE_WIDTH, PIECE_HEIGHT);
 
     var piecesIndex = 0,
         i, j,
