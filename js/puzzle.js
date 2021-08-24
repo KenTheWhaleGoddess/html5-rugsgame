@@ -21,14 +21,13 @@ async function preload() {
 
 async function login() {
     try {
-        window.web3 = await Moralis.Web3.enable();
         await ethereum.enable();
-        user = await Moralis.Web3.authenticate();
+        const user = await Moralis.Web3.authenticate();
         console.log(user);
         alert("User logged in");
         
-        const user = Moralis.User.current();
-        const userAddress = user.get("ethAddress");
+        const userinfo = Moralis.User.current();
+        const userAddress = userinfo.get("ethAddress");
         const openseaRugs = await fetch('https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=50&collection=8bit-rugs&owner=' + userAddress);
         const rug = await openseaRugs.json()[0];
         hideLogin();
