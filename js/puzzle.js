@@ -43,7 +43,7 @@ async function hideLogin() {
 	$('#login_button').hide();
 }
 
-async function prepareBoard(rug) {
+function prepareBoard(rug) {
     console.log(rug);
     console.log(rug.image_url);
 
