@@ -16,8 +16,8 @@ Moralis.initialize('igDYNSIRB7leqHRpnUuNPfplY1fn0Y60fp5AM8zV');
 Moralis.serverURL = 'https://e1qealego843.moralisweb3.com:2053/server';
 
 async function preload() {
-    await ethereum.enable();
     try {
+	    await ethereum.enable();
         const user = await Moralis.Web3.authenticate();
         console.log(user);
         alert("User logged in");
@@ -187,5 +187,3 @@ function shuffle(array) {
     return array;
     
 }
-
-document.getElementById("login_button").onclick = login;
