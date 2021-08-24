@@ -29,10 +29,10 @@ async function login() {
         const userinfo = Moralis.User.current();
         const userAddress = userinfo.get("ethAddress");
         const openseaRugs = await fetch('https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=50&collection=8bit-rugs&owner=' + userAddress);
-        console.log(openseaRugs.json());
-        const rug = await openseaRugs.json()[0];
+        const rugs = await openseaRugs.json();
+        console.log(rug[0]);
         hideLogin();
-        prepareBoard(rug);
+        prepareBoard(rug[0]);
     } catch (error) {
         console.log(error);
     }
