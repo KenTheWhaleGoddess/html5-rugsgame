@@ -29,9 +29,9 @@ async function login() {
         const userAddress = userinfo.get("ethAddress");
         const openseaRugs = await fetch('https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=50&collection=8bit-rugs&owner=' + userAddress);
         const rugs = await openseaRugs.json();
-        console.log(rug[0]);
+        console.log(rugs[0]);
         hideLogin();
-        prepareBoard(rug[0]);
+        prepareBoard(rugs[0]);
     } catch (error) {
         console.log(error);
     }
