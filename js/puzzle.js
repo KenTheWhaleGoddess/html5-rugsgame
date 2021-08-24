@@ -31,7 +31,9 @@ async function login() {
         const rugs = await openseaRugs.json();
         console.log(rugs);
         hideLogin();
-        prepareBoard(rugs);
+        for (const rug of rugs) {
+            prepareBoard(rug);
+        }
     } catch (error) {
         console.log(error);
     }
@@ -41,12 +43,11 @@ async function hideLogin() {
 	$('#login_button').hide();
 }
 
-async function prepareBoard(rugs) {
-    console.log(rugs);
-    const url = await rugs[0].image_url;
-    console.log(url);
+async function prepareBoard(rug) {
+    console.log(rug);
+    console.log(rug.image_url);
 
-    game.load.spritesheet("background", url, PIECE_WIDTH, PIECE_HEIGHT);
+    game.load.spritesheet("background", rug.image_url, PIECE_WIDTH, PIECE_HEIGHT);
 
     var piecesIndex = 0,
         i, j,
