@@ -31,7 +31,7 @@ async function login() {
         const rugs = await openseaRugs.json();
         console.log(rugs);
         hideLogin();
-        for (const rug of rugs) {
+        for (const rug of rugs.assets) {
             prepareBoard(rug);
         }
     } catch (error) {
