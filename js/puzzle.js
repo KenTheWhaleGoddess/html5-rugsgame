@@ -1,4 +1,4 @@
-var game = new Phaser.Game(400, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: null });
+var game = new Phaser.Game(400, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
 var PIECE_WIDTH = 200,
     PIECE_HEIGHT = 200,
@@ -17,9 +17,6 @@ Moralis.serverURL = 'https://e1qealego843.moralisweb3.com:2053/server';
 
 async function preload() {
     await ethereum.enable();
-}
-
-async function login() {
     try {
         const user = await Moralis.Web3.authenticate();
         console.log(user);
@@ -31,24 +28,14 @@ async function login() {
         const rugs = await openseaRugs.json();
         console.log(rugs);
         hideLogin();
-        for (const rug of rugs.assets) {
-            prepareBoard(rug);
-        }
+   		game.load.spritesheet("background", rugs.assets[0].image_url, PIECE_WIDTH, PIECE_HEIGHT);
+
     } catch (error) {
         console.log(error);
     }
 }
 
-async function hideLogin() {
-	$('#login_button').hide();
-}
-
-function prepareBoard(rug) {
-    console.log(rug);
-    console.log(rug.image_url);
-
-    game.load.spritesheet("background", rug.image_url, PIECE_WIDTH, PIECE_HEIGHT);
-
+function create(rug) {
     var piecesIndex = 0,
         i, j,
         piece;
